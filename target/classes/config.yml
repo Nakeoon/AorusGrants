@@ -1,0 +1,71 @@
+# AorusGrants - Main Configuration
+messages:
+  prefix: "&8[&bAorusGrants&8] &r"
+  no-permission: "&cYou don't have permission to do that."
+  player-not-found: "&cPlayer not found: &e{player}"
+  grant-success: "&aSuccessfully granted &e{group} &ato &e{player}&a."
+  demote-success: "&aSuccessfully demoted &e{player}&a."
+  no-groups: "&cThis player has no groups to demote from."
+  session-expired: "&cYour session has expired. Please reopen the menu."
+  luckperms-not-found: "&cLuckPerms is not installed or enabled."
+
+# Session timeout in seconds
+session-timeout: 120
+
+# Groups configuration
+# Type options: DEFAULT, DONATOR, STAFF, HIDDEN
+groups:
+  default:
+    display-name: "Default"
+    prefix: "&7"
+    weight: 0
+    type: DEFAULT
+    material: WHITE_WOOL
+  vip:
+    display-name: "VIP"
+    prefix: "&aVIP &r"
+    weight: 100
+    type: DONATOR
+    material: LIME_WOOL
+  vip-plus:
+    display-name: "VIP+"
+    prefix: "&bVIP+ &r"
+    weight: 200
+    type: DONATOR
+    material: CYAN_WOOL
+  mvp:
+    display-name: "MVP"
+    prefix: "&6MVP &r"
+    weight: 300
+    type: DONATOR
+    material: YELLOW_WOOL
+  mvp-plus:
+    display-name: "MVP+"
+    prefix: "&6MVP&c+ &r"
+    weight: 400
+    type: DONATOR
+    material: ORANGE_WOOL
+  helper:
+    display-name: "Helper"
+    prefix: "&eHelper &r"
+    weight: 500
+    type: STAFF
+    material: YELLOW_WOOL
+  mod:
+    display-name: "Mod"
+    prefix: "&2Mod &r"
+    weight: 600
+    type: STAFF
+    material: GREEN_WOOL
+  admin:
+    display-name: "Admin"
+    prefix: "&cAdmin &r"
+    weight: 700
+    type: STAFF
+    material: RED_WOOL
+  owner:
+    display-name: "Owner"
+    prefix: "&4Owner &r"
+    weight: 1000
+    type: STAFF
+    material: WHITE_WOOL

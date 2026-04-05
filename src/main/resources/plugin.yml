@@ -1,0 +1,26 @@
+name: AorusGrants
+version: '1.0.0'
+main: dev.aorus.aorusgrants.AorusGrants
+api-version: '1.20'
+description: LuckPerms-based rank management GUI
+author: AorusNetwork
+depend:
+  - LuckPerms
+
+commands:
+  ag:
+    description: Open the AorusGrants menu for a player
+    usage: /ag <player> | /ag history <player> | /ag help
+    permission: aorusgrants.use
+  agadmin:
+    description: AorusGrants admin commands
+    usage: /agadmin setitem <group> | /agadmin reload
+    permission: aorusgrants.admin
+
+permissions:
+  aorusgrants.use:
+    description: Allows use of /ag command
+    default: op
+  aorusgrants.admin:
+    description: Full admin access to AorusGrants (includes /ag history)
+    default: op

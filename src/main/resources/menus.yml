@@ -1,0 +1,186 @@
+# AorusGrants — menus.yml
+# All slots are 0-indexed.
+
+# ─────────────────────────────────────────
+#   MENU 1 — MAIN MENU (27 slots)
+#   No levers. No head.
+#   Slot 13 → Book (click = view player groups / Info)
+#   Slot 11 → Promote
+#   Slot 15 → Demote
+# ─────────────────────────────────────────
+main-menu:
+  title: "&8» &bAorusGrants &8«"
+  size: 27
+
+  player-book:
+    slot: 13
+    name: "&b{player}"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Player: &f{player}"
+      - ""
+      - "&eClick to view groups."
+      - "&8&m------------------------------"
+
+  promote-button:
+    slot: 11
+    material: GREEN_WOOL
+    name: "&a&l▲ PROMOTE"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Grant a rank to &f{player}&7."
+      - "&8&m------------------------------"
+
+  demote-button:
+    slot: 15
+    material: RED_WOOL
+    name: "&c&l▼ REMOVE RANK"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Remove a rank from &f{player}&7."
+      - "&8&m------------------------------"
+
+# ─────────────────────────────────────────
+#   MENU 2 — RANK SELECT (54 slots)
+#   Levers: 0, 8, 45, 53
+#   Content: inner rows
+#   Nav: 48 (prev) | 49 (back) | 50 (next)
+# ─────────────────────────────────────────
+rank-select-menu:
+  title: "&8» &bSelect Rank &8«"
+  size: 54
+
+# ─────────────────────────────────────────
+#   MENU 3 — DURATION (54 slots)
+#   Days (10-13) | Weeks (19-22) | Months (28-31)
+#   Permanent (25) | Confirm (26)
+#   Nav: 48 (deco) | 49 (back) | 50 (deco)
+# ─────────────────────────────────────────
+duration-menu:
+  title: "&8» &bSelect Duration &8«"
+  size: 54
+
+  days:
+    material: LIME_WOOL
+    name-template: "&a{amount} Day(s)"
+    lore-template:
+      - "&8&m------------------------------"
+      - "&7Add &a{amount} day(s)&7."
+      - "&8&m------------------------------"
+    slots:
+      - { slot: 10, amount: 1  }
+      - { slot: 11, amount: 3  }
+      - { slot: 12, amount: 7  }
+      - { slot: 13, amount: 14 }
+
+  weeks:
+    material: YELLOW_WOOL
+    name-template: "&e{amount} Week(s)"
+    lore-template:
+      - "&8&m------------------------------"
+      - "&7Add &e{amount} week(s)&7."
+      - "&8&m------------------------------"
+    slots:
+      - { slot: 19, amount: 1 }
+      - { slot: 20, amount: 2 }
+      - { slot: 21, amount: 3 }
+      - { slot: 22, amount: 4 }
+
+  months:
+    material: ORANGE_WOOL
+    name-template: "&6{amount} Month(s)"
+    lore-template:
+      - "&8&m------------------------------"
+      - "&7Add &6{amount} month(s)&7."
+      - "&8&m------------------------------"
+    slots:
+      - { slot: 28, amount: 1 }
+      - { slot: 29, amount: 2 }
+      - { slot: 30, amount: 3 }
+      - { slot: 31, amount: 6 }
+
+  permanent:
+    slot: 24
+    material: RED_WOOL
+    name: "&c&lPERMANENT"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Overrides any duration."
+      - "&cNever expires."
+      - "&8&m------------------------------"
+
+  confirm-button:
+    slot: 25
+    material: NETHER_STAR
+    name: "&a&l✔ CONFIRM"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Current duration:"
+      - "&f{duration}"
+      - ""
+      - "&aClick to continue."
+      - "&8&m------------------------------"
+
+# ─────────────────────────────────────────
+#   MENU 4 — CONFIRM (27 slots)
+#   No levers.
+#   Slot 13 → Player Head
+#   Slot 11 → Confirm  |  Slot 15 → Cancel
+# ─────────────────────────────────────────
+confirm-menu:
+  title: "&8» &bConfirm Grant &8«"
+  size: 27
+
+  player-head:
+    slot: 13
+    name: "&b{player}"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Player:   &f{player}"
+      - "&7Group:    &f{group}"
+      - "&7Action:   &f{action}"
+      - "&7Duration: &f{duration}"
+      - "&8&m------------------------------"
+
+  confirm-button:
+    slot: 11
+    material: GREEN_WOOL
+    name: "&a&l✔ CONFIRM"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Click to execute."
+      - "&8&m------------------------------"
+
+  cancel-button:
+    slot: 15
+    material: RED_WOOL
+    name: "&c&l✘ CANCEL"
+    lore:
+      - "&8&m------------------------------"
+      - "&7Click to cancel."
+      - "&8&m------------------------------"
+
+# ─────────────────────────────────────────
+#   MENU 5 — INFO (54 slots)
+#   Levers: 0, 8, 45, 53
+#   Slot 4  → Player Head (top center)
+#   Slots 19-25, 28-34 → player's groups
+#   Slot 49 → Redstone back
+# ─────────────────────────────────────────
+info-menu:
+  title: "&8» &bPlayer Groups &8«"
+  size: 54
+  group-slots: [19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  back-button:
+    slot: 49
+    name: "&c◀ Back"
+
+# ─────────────────────────────────────────
+#   MENU — DEMOTE SELECT (54 slots)
+#   Levers: 0, 8, 45, 53
+#   Content: inner rows (same as rank-select)
+#   Nav: 48 (prev) | 49 (back) | 50 (next)
+# ─────────────────────────────────────────
+demote-menu:
+  title: "&8» &cRemove Rank &8«"
+  size: 54
