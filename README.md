@@ -3,6 +3,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Spigot%20%7C%20Paper-gold.svg)
 ![Java](https://img.shields.io/badge/java-17%2B-orange.svg)
+![BuiltByBit](https://builtbybit.com/resources/aorusgrants-beta.97002/)
 
 > **AorusGrants** is a modern, GUI-based rank management plugin powered by **LuckPerms**. Designed for fast, intuitive, and fully configurable staff workflows.
 
