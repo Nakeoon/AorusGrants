@@ -5,73 +5,157 @@
 ![Java](https://img.shields.io/badge/java-17%2B-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-> **AorusGrants** es un plugin de gestión de rangos basado en GUI, moderno y potente, diseñado específicamente para funcionar sobre **LuckPerms**. Olvídate de los comandos complejos y gestiona a tu staff y usuarios con un flujo de trabajo rápido e intuitivo.
+> **AorusGrants** is a modern, GUI-based rank management plugin powered by **LuckPerms**. Designed for fast, intuitive, and fully configurable staff workflows.
 
----
+## ✨ Features
 
-## ✨ Características Principales
+  - 🧩 **5-Step GUI Flow** for granting and demoting ranks.
+  - 🔒 **100% LuckPerms API Integration** — no custom permission system needed.
+  - ⏳ **Temporary Grants** with day/week/month accumulators.
+  - ⚙️ **Fully Configurable Menus** via `menus.yml`.
+  - 📊 **Session Manager** with automatic expiration to prevent errors.
+  - ⚡ **Tab-Complete Support** for `/ag <player>`.
+  - 🎨 **Customization Ready** — edit prefixes, materials, and layouts.
 
-* 🧩 **Flujo GUI de 5 pasos:** Un proceso guiado para otorgar o retirar rangos sin errores.
-* 🔒 **Integración Nativa:** 100% basado en la API de **LuckPerms**. Sin sistemas de permisos paralelos.
-* ⏳ **Rangos Temporales:** Soporte para acumuladores de tiempo (Días, Semanas, Meses).
-* ⚙️ **Altamente Configurable:** Personaliza cada menú, ítem y mensaje mediante `menus.yml`.
-* 📊 **Gestión de Sesiones:** Sistema de expiración automática para evitar cambios accidentales.
-* ⚡ **Tab-Complete:** Soporte completo para `/ag <jugador>`.
-* 🎨 **Estética Premium:** Prefijos, materiales y layouts totalmente editables.
+-----
 
----
+## 📸 Preview
 
-## 📸 Vista Previa
+> *(Add screenshots here — visual previews are critical for GUI plugins)*
 
-> *¡Próximamente! Aquí puedes añadir capturas de pantalla de los menús para mostrar la interfaz.*
-> ![Preview Placeholder](https://via.placeholder.com/800x400?text=Insert+GUI+Screenshots+Here)
+-----
 
----
+## 📦 Requirements
 
-## 📦 Requisitos Técnicos
-
-Para asegurar el correcto funcionamiento, asegúrate de cumplir con:
-
-| Requisito | Versión Mínima |
+| Requirement | Minimum Version |
 | :--- | :--- |
-| **Software** | Paper o Spigot 1.20+ |
+| **Software** | Paper / Spigot 1.20+ |
 | **Java** | Java 17+ |
-| **Dependencia** | LuckPerms 5.4+ |
+| **Dependency** | LuckPerms 5.4+ |
 
----
+-----
 
-## 🚀 Instalación y Uso
+## 🚀 Installation
 
-1.  Descarga el archivo `.jar` más reciente.
-2.  Muévelo a la carpeta `/plugins/` de tu servidor.
-3.  Asegúrate de tener **LuckPerms** instalado.
-4.  Reinicia el servidor para generar los archivos de configuración.
-5.  Configura tus rangos en:
-    * `plugins/AorusGrants/config.yml`
-    * `plugins/AorusGrants/menus.yml`
+1.  Download the latest **.jar** file.
+2.  Place it in your server's `plugins/` folder.
+3.  Ensure **LuckPerms** is installed.
+4.  Start or restart your server.
+5.  Configure your settings in:
+      - `plugins/AorusGrants/config.yml`
+      - `plugins/AorusGrants/menus.yml`
 
----
+-----
 
-## 🛠️ Comandos y Permisos
+## 🛠️ Building
 
-| Comando | Permiso | Descripción |
+```bash
+mvn clean package
+```
+
+**Output:** `target/AorusGrants-1.0.0.jar`
+
+-----
+
+## 📜 Commands & Permissions
+
+| Command | Permission | Description |
 | :--- | :--- | :--- |
-| `/ag <player>` | `aorusgrants.use` | Abre la interfaz de gestión para el jugador. |
-| `/ag reload` | `aorusgrants.admin` | Recarga todos los archivos de configuración. |
+| `/ag <player>` | `aorusgrants.use` | Open the GUI for managing ranks |
+| `/ag reload` | `aorusgrants.admin` | Reload all configuration files |
 
----
+-----
 
-## 🧭 Flujo del Menú
+## 🧭 Menu Flow
 
-La lógica de la interfaz sigue un camino lógico para evitar confusiones:
+The interface follows a strict logical path to ensure safety and speed:
 
 ```mermaid
 graph TD
-    A[/ag player] --> B{MENÚ PRINCIPAL}
+    A[/ag player] --> B{MAIN MENU}
     B --> C[PROMOTE]
     B --> D[DEMOTE]
     B --> E[INFO]
     
-    C --> C1[Seleccionar Rango] --> C2[Seleccionar Duración] --> C3[Confirmar] --> C4((EJECUTAR))
-    D --> D1[Confirmar] --> D2((EJECUTAR))
-    E --> E1[Ver todos los grupos]
+    C --> C1[Select Rank] --> C2[Select Duration] --> C3[Confirm] --> C4((EXECUTE))
+    D --> D1[Confirm] --> D2((EXECUTE))
+    E --> E1[View All Groups]
+```
+
+-----
+
+## ⚙️ Configuration
+
+### Groups (`config.yml`)
+
+```yaml
+groups:
+  vip:
+    display-name: "VIP"
+    prefix: "&aVIP &r"
+    weight: 100
+    type: DONATOR          # Options: DEFAULT | DONATOR | STAFF | HIDDEN
+    material: LIME_WOOL
+```
+
+### Menus (`menus.yml`)
+
+Fully customizable layouts. You can modify:
+
+  * Slots and Item Materials.
+  * Custom Display Names and Lore.
+  * Execution logic per item.
+
+> Apply changes instantly with `/ag reload`
+
+-----
+
+## 🔤 Placeholders
+
+| Placeholder | Description |
+| :--- | :--- |
+| `{player}` | Target player name |
+| `{prefix}` | Player's current prefix |
+| `{groups}` | Player's current groups |
+| `{group}` | Selected group in the GUI |
+| `{action}` | Current action (Promote / Demote) |
+| `{duration}` | Selected duration string |
+| `{amount}` | Numerical time amount |
+
+-----
+
+## 🎯 Why AorusGrants?
+
+Unlike traditional rank plugins:
+
+  * ✅ **No Command Spam:** Avoid typing long LuckPerms strings.
+  * ✅ **Intuitive Workflow:** Clean GUI steps reduce staff training time.
+  * ✅ **Safety First:** Confirmation screens prevent accidental "fat-finger" demotions.
+  * ✅ **Native Performance:** Lightweight implementation with no overhead.
+
+-----
+
+## 📌 Roadmap
+
+  - [ ] Rank history GUI viewer.
+  - [ ] MySQL / Remote database support.
+  - [ ] Menu animations & sound effects.
+  - [ ] Advanced logging (Discord Webhooks).
+
+-----
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss your ideas.
+
+-----
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+-----
+
+## ⭐ Support
+
+If you like this project, please consider giving the repository a **star**\!
