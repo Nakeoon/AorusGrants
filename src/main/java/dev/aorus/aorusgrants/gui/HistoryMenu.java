@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.WeakHashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -52,7 +53,7 @@ public class HistoryMenu {
     private final AorusGrants plugin;
 
     private int  currentPage  = 0;
-    private UUID viewedTarget = null;
+    private final WeakHashMap<Player, UUID> playerViewedTargets = new WeakHashMap<>();
 
     public HistoryMenu(AorusGrants plugin) {
         this.plugin = plugin;
@@ -63,7 +64,7 @@ public class HistoryMenu {
     // ─────────────────────────────────────────────────────────
 
     public void open(Player staff, UUID targetUuid, String targetName, int page) {
-        this.viewedTarget = targetUuid;
+        playerViewedTargets.put(staff, targetUuid);
 
         List<HistoryManager.HistoryEntry> entries =
                 plugin.getHistoryManager().getHistory(targetUuid);
@@ -190,7 +191,7 @@ public class HistoryMenu {
     // ─────────────────────────────────────────────────────────
 
     public int  getCurrentPage()  { return currentPage;  }
-    public UUID getViewedTarget() { return viewedTarget; }
+    public UUID getViewedTarget(Player player) { return player != null ? playerViewedTargets.get(player) : null; }
     public int  getNavBackSlot()  { return NAV_BACK;     }
     public int  getNavPrevSlot()  { return NAV_PREV;     }
     public int  getNavNextSlot()  { return NAV_NEXT;     }

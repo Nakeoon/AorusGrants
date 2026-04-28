@@ -26,7 +26,7 @@ public class GroupData {
 
     public String getId() { return id; }
     public String getDisplayName() { return displayName; }
-    public String getPrefix() { return prefix; }
+    public String getPrefix() { return prefix != null ? prefix : ""; }
     public int getWeight() { return weight; }
     public GroupType getType() { return type; }
     public Material getMaterial() { return material; }

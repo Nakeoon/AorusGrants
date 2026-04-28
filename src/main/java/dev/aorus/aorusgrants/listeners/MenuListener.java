@@ -295,7 +295,7 @@ public class MenuListener implements Listener {
     //   HISTORY MENU  (no GrantSession required)
     // ─────────────────────────────────────────────────────────
     private void handleHistory(Player staff, int slot) {
-        java.util.UUID viewedTarget = historyMenu.getViewedTarget();
+        UUID viewedTarget = historyMenu.getViewedTarget(staff);
         if (viewedTarget == null) return;
 
         // Ignore corner levers

@@ -55,4 +55,14 @@ public final class ColorUtil {
         if (text == null) return "";
         return text.replace("\u00A7", "&");
     }
+
+    public static String stripTrailing(String text) {
+        if (text == null) return "";
+        int len = text.length();
+        if (len == 0) return text;
+        while (len > 0 && (text.charAt(len - 1) == ' ' || text.charAt(len - 1) == '\u00A7')) {
+            len--;
+        }
+        return len == text.length() ? text : text.substring(0, len);
+    }
 }
