@@ -157,6 +157,74 @@ public class HistoryManager {
         return result;
     }
 
+    /**
+     * Returns all history entries made by a given staff UUID,
+     * sorted newest-first.
+     */
+    public List<HistoryEntry> getStaffHistory(UUID staffUuid) {
+        List<HistoryEntry> result = new ArrayList<>();
+
+        var section = yaml.getConfigurationSection("history");
+        if (section == null) return result;
+
+        String staffStr = staffUuid.toString();
+
+        for (String key : section.getKeys(false)) {
+            String path = "history." + key;
+            String storedStaff = yaml.getString(path + ".staffUuid", "");
+            if (!storedStaff.equals(staffStr)) continue;
+
+            result.add(new HistoryEntry(
+                yaml.getString(path + ".targetUuid", ""),
+                yaml.getString(path + ".targetName", "Unknown"),
+                storedStaff,
+                yaml.getString(path + ".staffName", "Unknown"),
+                yaml.getString(path + ".group", "?"),
+                yaml.getString(path + ".duration", "?"),
+                yaml.getBoolean(path + ".permanent", false),
+                yaml.getLong(path + ".timestamp", 0L),
+                yaml.getLong(path + ".expiresAt", 0L)
+            ));
+        }
+
+        result.sort((a, b) -> Long.compare(b.timestamp(), a.timestamp()));
+        return result;
+    }
+
+    /**
+     * Returns all history entries made by a given staff name (case-insensitive).
+     */
+    public List<HistoryEntry> getStaffHistoryByName(String staffName) {
+        List<HistoryEntry> result = new ArrayList<>();
+        if (staffName == null || staffName.isBlank()) return result;
+
+        var section = yaml.getConfigurationSection("history");
+        if (section == null) return result;
+
+        String search = staffName.toLowerCase();
+
+        for (String key : section.getKeys(false)) {
+            String path = "history." + key;
+            String storedStaff = yaml.getString(path + ".staffName", "");
+            if (!storedStaff.toLowerCase().equals(search)) continue;
+
+            result.add(new HistoryEntry(
+                yaml.getString(path + ".targetUuid", ""),
+                yaml.getString(path + ".targetName", "Unknown"),
+                yaml.getString(path + ".staffUuid", "CONSOLE"),
+                storedStaff,
+                yaml.getString(path + ".group", "?"),
+                yaml.getString(path + ".duration", "?"),
+                yaml.getBoolean(path + ".permanent", false),
+                yaml.getLong(path + ".timestamp", 0L),
+                yaml.getLong(path + ".expiresAt", 0L)
+            ));
+        }
+
+        result.sort((a, b) -> Long.compare(b.timestamp(), a.timestamp()));
+        return result;
+    }
+
     // ─────────────────────────────────────────────────────────
     //   DTO
     // ─────────────────────────────────────────────────────────

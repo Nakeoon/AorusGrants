@@ -12,6 +12,9 @@ messages:
 # Session timeout in seconds
 session-timeout: 120
 
+# Notify players of received ranks on join
+notify-on-join: true
+
 # Groups configuration
 # Type options: DEFAULT, DONATOR, STAFF, HIDDEN
 groups:

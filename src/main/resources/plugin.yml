@@ -1,11 +1,13 @@
 name: AorusGrants
-version: '1.0.0'
+version: '1.0.1'
 main: dev.aorus.aorusgrants.AorusGrants
 api-version: '1.20'
 description: LuckPerms-based rank management GUI
 author: AorusNetwork
 depend:
   - LuckPerms
+softdepend:
+  - PlaceholderAPI
 
 commands:
   ag:
@@ -14,7 +16,7 @@ commands:
     permission: aorusgrants.use
   agadmin:
     description: AorusGrants admin commands
-    usage: /agadmin setitem <group> | /agadmin reload
+    usage: /agadmin setitem <group> | /agadmin stafflog | /agadmin reload
     permission: aorusgrants.admin
 
 permissions:
@@ -23,4 +25,7 @@ permissions:
     default: op
   aorusgrants.admin:
     description: Full admin access to AorusGrants (includes /ag history)
+    default: op
+  aorusgrants.notify.bypass:
+    description: Bypass join notifications
     default: op

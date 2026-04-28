@@ -1,7 +1,9 @@
 package dev.aorus.aorusgrants.commands;
 
 import dev.aorus.aorusgrants.AorusGrants;
+import dev.aorus.aorusgrants.gui.HistoryMenu;
 import dev.aorus.aorusgrants.managers.ConfigManager;
+import dev.aorus.aorusgrants.managers.HistoryManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * /agadmin setitem <grupo>
@@ -88,6 +91,21 @@ public class AgAdminCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
+        // ── /agadmin stafflog ─────────────────────────────────
+        if (args[0].equalsIgnoreCase("stafflog")) {
+            String targetStaff = args.length >= 2 ? args[1] : staff.getName();
+            var history = plugin.getHistoryManager().getStaffHistoryByName(targetStaff);
+
+            if (history.isEmpty()) {
+                staff.sendMessage(prefix + ConfigManager.color(
+                    "&cNo se encontraron acciones para &e" + targetStaff));
+                return true;
+            }
+
+            new HistoryMenu(plugin).open(staff, staff.getUniqueId(), targetStaff + " (Staff Log)", 0);
+            return true;
+        }
+
         sendAdminHelp(staff, prefix);
         return true;
     }
@@ -97,6 +115,7 @@ public class AgAdminCommand implements CommandExecutor, TabCompleter {
         staff.sendMessage(ConfigManager.color("&b AorusGrants &7Admin"));
         staff.sendMessage(ConfigManager.color("&8&m            &r"));
         staff.sendMessage(ConfigManager.color("&e/agadmin setitem <grupo> &7→ Asignar item del grupo"));
+        staff.sendMessage(ConfigManager.color("&e/agadmin stafflog [staff] &7→ Ver historial de staff"));
         staff.sendMessage(ConfigManager.color("&e/agadmin reload &7→ Recargar configs"));
         staff.sendMessage(ConfigManager.color("&8&m            &r"));
     }

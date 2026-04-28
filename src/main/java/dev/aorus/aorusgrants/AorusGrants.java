@@ -3,6 +3,8 @@ package dev.aorus.aorusgrants;
 import dev.aorus.aorusgrants.commands.AgAdminCommand;
 import dev.aorus.aorusgrants.commands.AgCommand;
 import dev.aorus.aorusgrants.listeners.MenuListener;
+import dev.aorus.aorusgrants.listeners.LoginNotificationListener;
+import dev.aorus.aorusgrants.expansion.AorusGrantsExpansion;
 import dev.aorus.aorusgrants.managers.*;
 import dev.aorus.aorusgrants.managers.HistoryManager;
 import net.luckperms.api.LuckPerms;
@@ -57,6 +59,12 @@ public final class AorusGrants extends JavaPlugin {
         getCommand("agadmin").setTabCompleter(agAdminCommand);
 
         getServer().getPluginManager().registerEvents(new MenuListener(this), this);
+        getServer().getPluginManager().registerEvents(new LoginNotificationListener(this), this);
+
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new AorusGrantsExpansion(this).register();
+            getLogger().info("PlaceholderAPI hooked.");
+        }
 
         getLogger().info("AorusGrants v" + getDescription().getVersion() + " enabled.");
     }
