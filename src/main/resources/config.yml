@@ -1,13 +1,10 @@
 # AorusGrants - Main Configuration
-messages:
-  prefix: "&8[&bAorusGrants&8] &r"
-  no-permission: "&cYou don't have permission to do that."
-  player-not-found: "&cPlayer not found: &e{player}"
-  grant-success: "&aSuccessfully granted &e{group} &ato &e{player}&a."
-  demote-success: "&aSuccessfully demoted &e{player}&a."
-  no-groups: "&cThis player has no groups to demote from."
-  session-expired: "&cYour session has expired. Please reopen the menu."
-  luckperms-not-found: "&cLuckPerms is not installed or enabled."
+
+# Language: es (Spanish), en (English)
+language: es
+
+# Notify players of received ranks on join
+notify-on-join: true
 
 # Session timeout in seconds
 session-timeout: 120

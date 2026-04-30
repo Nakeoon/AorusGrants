@@ -12,7 +12,7 @@ softdepend:
 commands:
   ag:
     description: Open the AorusGrants menu for a player
-    usage: /ag <player> | /ag history <player> | /ag help
+    usage: /ag <player> | /ag history <player> | /ag lang <es|en> | /ag help
     permission: aorusgrants.use
   agadmin:
     description: AorusGrants admin commands

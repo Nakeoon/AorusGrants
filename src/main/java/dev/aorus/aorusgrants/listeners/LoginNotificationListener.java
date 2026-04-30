@@ -42,8 +42,9 @@ public class LoginNotificationListener implements Listener {
         if (recent.isEmpty()) return;
 
         String prefix = plugin.getConfigManager().getPrefix();
+        String lang = plugin.getConfigManager().getLanguage(player);
 
-        player.sendMessage(ConfigManager.color(prefix + "&e&l You received ranks while offline!"));
+        player.sendMessage(ConfigManager.color(prefix + plugin.getConfigManager().getMessage("notify-offline", lang)));
         player.sendMessage(ConfigManager.color("&8&m                             &r"));
 
         for (HistoryManager.HistoryEntry entry : recent) {

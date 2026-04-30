@@ -80,6 +80,23 @@ public class AgCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
+        // ── /ag lang <es|en> ────────────────────────────────────
+        if (sub.equals("lang")) {
+            if (args.length < 2) {
+                staff.sendMessage(prefix + ConfigManager.color("&eUsage: &f/ag lang <es|en>"));
+                staff.sendMessage(ConfigManager.color("&7Current: &f" + plugin.getConfigManager().getLanguage(staff).toUpperCase()));
+                return true;
+            }
+            String lang = args[1].toLowerCase();
+            if (!lang.equals("es") && !lang.equals("en")) {
+                staff.sendMessage(prefix + ConfigManager.color("&cLanguage not supported. Use: &ees&c or &een&c."));
+                return true;
+            }
+            plugin.getConfigManager().setPlayerLanguage(staff, lang);
+            staff.sendMessage(prefix + ConfigManager.color("&aLanguage set to &e" + lang.toUpperCase() + "&a."));
+            return true;
+        }
+
         // ── /ag <player> — open grant menu ───────────────────
         openGrantMenu(staff, args[0]);
         return true;
@@ -200,16 +217,19 @@ public class AgCommand implements CommandExecutor, TabCompleter {
 
     private void sendHelp(Player staff) {
         boolean isAdmin = staff.hasPermission("aorusgrants.admin");
+        String currentLang = plugin.getConfigManager().getLanguage(staff).toUpperCase();
         staff.sendMessage(ConfigManager.color("&8&m            &r"));
         staff.sendMessage(ConfigManager.color(" &bAorusGrants &7Help"));
         staff.sendMessage(ConfigManager.color("&8&m            &r"));
         staff.sendMessage(ConfigManager.color("&e/ag <player>              &7→ Open grant menu"));
         staff.sendMessage(ConfigManager.color("&e/ag help                  &7→ View this help"));
+        staff.sendMessage(ConfigManager.color("&e/ag lang <es|en>          &7→ Change language (&f" + currentLang + "&7)"));
         if (isAdmin) {
             staff.sendMessage(ConfigManager.color(""));
             staff.sendMessage(ConfigManager.color(" &c Admin:"));
             staff.sendMessage(ConfigManager.color("&e/ag history <player>      &7→ View grant history"));
             staff.sendMessage(ConfigManager.color("&e/agadmin setitem <group>  &7→ Set rank item"));
+            staff.sendMessage(ConfigManager.color("&e/agadmin stafflog [staff] &7→ Staff history"));
             staff.sendMessage(ConfigManager.color("&e/agadmin reload           &7→ Reload configuration"));
         }
         staff.sendMessage(ConfigManager.color("&8&m            &r"));
